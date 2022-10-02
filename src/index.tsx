@@ -15,8 +15,7 @@ const client = new ApolloClient({
   uri: "https://flyby-gateway.herokuapp.com/",
   cache: new InMemoryCache({
     typePolicies: {
-      // Type policy map
-      Product: {
+      Query: {
         fields: {
           cartItems: {
             read() {
@@ -24,6 +23,11 @@ const client = new ApolloClient({
               return cartItemsVar();
             },
           },
+        },
+      },
+      // Type policy map
+      Product: {
+        fields: {
           // Field policy map for the Product type
           isInCart: {
             // Field policy for the isInCart field
